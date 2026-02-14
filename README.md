@@ -26,13 +26,18 @@ ralph/
 
 ### Installation
 
-Symlink to your Claude plugins directory:
+Symlink to the Claude cache directory (where skills are actually loaded from):
 
 ```bash
-ln -s ~/skills/ralph/ralph-init ~/.claude/plugins/claude-plugins-official/superpowers/skills/
-ln -s ~/skills/ralph/ralph-run ~/.claude/plugins/claude-plugins-official/superpowers/skills/
+# Skills go in the cache directory
+ln -s ~/skills/ralph/ralph-init ~/.claude/plugins/cache/claude-plugins-official/superpowers/4.3.0/skills/
+ln -s ~/skills/ralph/ralph-run ~/.claude/plugins/cache/claude-plugins-official/superpowers/4.3.0/skills/
+
+# Template goes in templates directory
 ln -s ~/skills/ralph/ralph-loop.sh ~/.claude/templates/
 ```
+
+**Note:** Check your superpowers version (4.3.0 in path above) and adjust if different.
 
 ### Usage
 

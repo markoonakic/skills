@@ -156,9 +156,15 @@ while [[ $ITERATION -lt $MAX_ITERATIONS ]]; do
 
     # Run Claude in headless mode with fresh context
     echo -e "${BLUE}Starting Claude with fresh context...${NC}"
+    echo -e "${YELLOW}(This may take several minutes - output will stream below)${NC}"
     echo ""
 
-    ANTHROPIC_AUTH_TOKEN="$ZAI_AUTH_TOKEN" ANTHROPIC_BASE_URL="$ZAI_BASE_URL" ANTHROPIC_DEFAULT_OPUS_MODEL="$ZAI_DEFAULT_MODEL" ANTHROPIC_DEFAULT_SONNET_MODEL="$ZAI_DEFAULT_MODEL" claude -p --dangerously-skip-permissions "$(cat $PROMPT_FILE)"
+    # Run with unbuffered output for real-time feedback
+    stdbuf -oL -eL ANTHROPIC_AUTH_TOKEN="$ZAI_AUTH_TOKEN" \
+        ANTHROPIC_BASE_URL="$ZAI_BASE_URL" \
+        ANTHROPIC_DEFAULT_OPUS_MODEL="$ZAI_DEFAULT_MODEL" \
+        ANTHROPIC_DEFAULT_SONNET_MODEL="$ZAI_DEFAULT_MODEL" \
+        claude -p --dangerously-skip-permissions "$(cat $PROMPT_FILE)" 2>&1
 
     EXIT_CODE=$?
 

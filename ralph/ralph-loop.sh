@@ -158,7 +158,7 @@ while [[ $ITERATION -lt $MAX_ITERATIONS ]]; do
     echo -e "${BLUE}Starting Claude with fresh context...${NC}"
     echo ""
 
-    glaude -p --dangerously-skip-permissions "$(cat $PROMPT_FILE)"
+    ANTHROPIC_AUTH_TOKEN="$ZAI_AUTH_TOKEN" ANTHROPIC_BASE_URL="$ZAI_BASE_URL" ANTHROPIC_DEFAULT_OPUS_MODEL="$ZAI_DEFAULT_MODEL" ANTHROPIC_DEFAULT_SONNET_MODEL="$ZAI_DEFAULT_MODEL" claude -p --dangerously-skip-permissions "$(cat $PROMPT_FILE)"
 
     EXIT_CODE=$?
 

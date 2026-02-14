@@ -158,7 +158,7 @@ while [[ $ITERATION -lt $MAX_ITERATIONS ]]; do
     echo -e "${BLUE}Starting Claude with fresh context...${NC}"
     echo ""
 
-    claude -p "$(cat $PROMPT_FILE)"
+    glaude -p --dangerously-skip-permissions "$(cat $PROMPT_FILE)"
 
     EXIT_CODE=$?
 
